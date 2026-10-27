@@ -5,15 +5,332 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bocasión | Panel de pedidos</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --background: #f4f7fc;
+      --surface: #ffffff;
+      --ink: #17243a;
+      --muted: #68758a;
+      --accent: #315fe8;
+      --line: #e3e8f0;
+      --shadow: 0 10px 30px rgba(25, 42, 75, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    .topbar {
+      width: 100%;
+      min-height: 76px;
+      padding: 14px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: white;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .back-link {
+      color: var(--muted);
+      background: #f3f5f9;
+      padding: 9px 15px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* CONTENIDO CENTRADO */
+
+    main.page-container {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 100% !important;
+      max-width: 1150px !important;
+      margin: 0 auto !important;
+      padding: 48px 24px 64px !important;
+    }
+
+    .page-heading {
+      display: block !important;
+      width: 100% !important;
+      max-width: 760px !important;
+      margin: 0 auto 36px !important;
+      text-align: center !important;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+    }
+
+    .page-heading h1 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: clamp(32px, 5vw, 44px);
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .page-heading > p:last-child {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* TARJETA DE CARGA */
+
+    .upload-card {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 100% !important;
+      max-width: 760px !important;
+      margin: 0 auto !important;
+      padding: 40px 28px;
+      text-align: center !important;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .upload-icon {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 18px;
+      color: var(--accent);
+      background: #edf2ff;
+      border-radius: 17px;
+      font-size: 34px;
+    }
+
+    .upload-card h2 {
+      margin: 0 0 12px;
+      font-size: 23px;
+    }
+
+    .upload-card > p:not(.file-info):not(.upload-status) {
+      max-width: 540px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+    }
+
+    .upload-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 24px;
+      color: white;
+      background: var(--accent);
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .upload-button:hover {
+      background: #244bc2;
+    }
+
+    .file-info {
+      width: 100%;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .upload-status {
+      width: 100%;
+      margin: 14px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .upload-status:empty {
+      display: none;
+    }
+
+    .upload-status.success {
+      color: #167447;
+    }
+
+    .upload-status.error {
+      color: #c43131;
+    }
+
+    /* VISTA PREVIA */
+
+    .preview-section {
+      width: 100%;
+      margin: 32px auto 0;
+      padding: 26px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .preview-section[hidden] {
+      display: none !important;
+    }
+
+    .preview-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .preview-heading h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .preview-heading .eyebrow {
+      margin-bottom: 5px;
+    }
+
+    .secondary-button {
+      padding: 10px 16px;
+      color: var(--ink);
+      background: #edf1f7;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .table-container {
+      width: 100%;
+      margin-top: 20px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+    }
+
+    #excelTable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    #excelTable th,
+    #excelTable td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    #excelTable th {
+      background: #f1f4fa;
+    }
+
+    #excelTable tbody tr:hover {
+      background: #f7f9fd;
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 14px 18px;
+      }
+
+      main.page-container {
+        padding: 32px 16px 44px !important;
+      }
+
+      .page-heading {
+        margin-bottom: 26px !important;
+      }
+
+      .page-heading h1 {
+        font-size: 32px;
+      }
+
+      .upload-card {
+        padding: 28px 18px;
+      }
+
+      .upload-button {
+        width: 100%;
+      }
+
+      .preview-section {
+        padding: 18px 14px;
+      }
+
+      .preview-heading {
+        align-items: stretch;
+      }
+
+      .secondary-button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
     <a class="brand" href="index.html">
       <span class="brand-mark">P</span>
       <span>Panel de pedidos</span>
     </a>
-    <a class="back-link" href="index.html">← Volver al inicio</a>
+
+    <a class="back-link" href="index.html">
+      ← Volver al inicio
+    </a>
   </header>
 
   <main class="page-container">
@@ -25,7 +342,9 @@
 
     <section class="upload-card">
       <div class="upload-icon">↑</div>
+
       <h2>Cargar archivo Excel</h2>
+
       <p>
         Selecciona el archivo que contiene los productos y las
         cantidades solicitadas por cada tienda.
@@ -46,8 +365,7 @@
         Formatos permitidos: .xlsx y .xls
       </p>
 
-      <p id="uploadStatus" class="upload-status" role="status">
-      </p>
+      <p id="uploadStatus" class="upload-status" role="status"></p>
     </section>
 
     <section id="previewSection" class="preview-section" hidden>
@@ -56,6 +374,7 @@
           <p class="eyebrow">VISTA PREVIA</p>
           <h2 id="sheetTitle">Contenido del Excel</h2>
         </div>
+
         <button id="clearFile" class="secondary-button" type="button">
           Quitar archivo
         </button>

@@ -2,86 +2,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#152238">
-    <title>Bocasion | Panel de pedidos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bocación | Panel de pedidos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span>Panel de pedidos</span>
+    </a>
+    <a class="back-link" href="index.html">← Volver al inicio</a>
+  </header>
 
-    <header class="topbar">
-        <a class="brand" href="index.html">
-            <span class="brand-mark">P</span>
-            <span>Panel de pedidos</span>
-        </a>
+  <main class="page-container">
+    <section class="page-heading">
+      <p class="eyebrow">MÓDULO DE PEDIDOS</p>
+      <h1>Bocación</h1>
+      <p>Sube el Excel de pedidos para revisar su contenido.</p>
+    </section>
 
-        <a class="back-link" href="index.html">
-            ← Volver al inicio
-        </a>
-    </header>
+    <section class="upload-card">
+      <div class="upload-icon">↑</div>
+      <h2>Cargar archivo Excel</h2>
+      <p>
+        Selecciona el archivo que contiene los productos y las
+        cantidades solicitadas por cada tienda.
+      </p>
 
-    <main class="page">
+      <label class="upload-button" for="excelFile">
+        Seleccionar archivo Excel
+      </label>
 
-        <section class="welcome">
-            <p class="eyebrow">MÓDULO DE PEDIDOS</p>
+      <input
+        id="excelFile"
+        type="file"
+        accept=".xlsx,.xls"
+        hidden
+      >
 
-            <h1>Bocasion</h1>
+      <p class="file-info" id="fileName">
+        Formatos permitidos: .xlsx y .xls
+      </p>
 
-            <p class="intro">
-                Administra los pedidos de las diferentes tiendas
-                desde un solo lugar.
-            </p>
-        </section>
+      <p id="uploadStatus" class="upload-status" role="status">
+      </p>
+    </section>
 
-        <section class="setup-card">
+    <section id="previewSection" class="preview-section" hidden>
+      <div class="preview-heading">
+        <div>
+          <p class="eyebrow">VISTA PREVIA</p>
+          <h2 id="sheetTitle">Contenido del Excel</h2>
+        </div>
+        <button id="clearFile" class="secondary-button" type="button">
+          Quitar archivo
+        </button>
+      </div>
 
-            <div class="setup-icon">↥</div>
+      <p id="rowCount" class="file-info"></p>
 
-            <div>
-                <span class="status">MÓDULO EN PREPARACIÓN</span>
+      <div class="table-container">
+        <table id="excelTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
-                <h2>Gestión de pedidos</h2>
+      <p class="file-info">
+        Se muestra una vista previa de hasta 100 filas.
+        El archivo original no se modifica.
+      </p>
+    </section>
+  </main>
 
-                <p>
-                    Próximamente podrás subir el Excel general de
-                    Bocasion, separar los pedidos por tienda,
-                    consultar los precios y descargar cada plantilla
-                    por separado.
-                </p>
-
-                <a class="text-link" href="index.html">
-                    Volver al panel principal
-                </a>
-            </div>
-
-        </section>
-
-        <section class="store-section">
-
-            <h2>Tiendas iniciales</h2>
-
-            <p class="section-intro">
-                Estas son las tiendas que tendremos como referencia.
-                Podrás agregar más cuando lo necesites.
-            </p>
-
-            <div class="store-list">
-                <span>Copsa</span>
-                <span>Fidera</span>
-                <span>UPC Monterrico</span>
-                <span>UPC San Isidro</span>
-            </div>
-
-            <p class="small-note">
-                Las tiendas adicionales se configurarán cuando
-                confirmes sus nombres.
-            </p>
-
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -2,106 +2,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#152238">
-    <title>Panel de pedidos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f7fc">
+  <title>Panel de pedidos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
 
-    <header class="topbar">
-        <a class="brand" href="index.html">
-            <span class="brand-mark">P</span>
-            <span>Panel de pedidos</span>
-        </a>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span>Panel de pedidos</span>
+    </a>
+  </header>
 
-        <span class="topbar-label">Herramientas internas</span>
-    </header>
+  <main class="home-container">
+    <section class="home-heading">
+      <p class="eyebrow">GESTIÓN INTERNA</p>
+      <h1>Panel de pedidos</h1>
+      <p>Selecciona el módulo con el que deseas trabajar.</p>
+    </section>
 
-    <main class="page">
+    <section class="modules-grid">
+      <a class="module-card" href="bocasion.html">
+        <div class="module-icon">B</div>
+        <div class="module-content">
+          <p class="module-label">MÓDULO DE PEDIDOS</p>
+          <h2>Bocasión</h2>
+          <p>
+            Carga el Excel de pedidos, revisa los productos y
+            prepara la información para las tiendas.
+          </p>
+          <span class="module-link">Entrar al módulo <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </section>
 
-        <section class="welcome">
-            <p class="eyebrow">CENTRO DE CONTROL</p>
+    <footer class="home-footer">
+      Panel interno de gestión de pedidos
+    </footer>
+  </main>
 
-            <h1>¿Qué necesitas gestionar?</h1>
-
-            <p class="intro">
-                Selecciona una herramienta para comenzar.
-                Iremos incorporando nuevas funciones poco a poco.
-            </p>
-        </section>
-
-        <section class="modules">
-
-            <!-- MÓDULO Bocasion -->
-            <a class="module module-active" href="bocasion.html">
-
-                <span class="module-icon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H20v14H5.5A1.5 1.5 0 0 0 4 19.5v-14Z"
-                            stroke="currentColor" stroke-width="1.8"
-                            stroke-linejoin="round"/>
-                        <path d="M4 19.5A1.5 1.5 0 0 1 5.5 18H20M8 8h8M8 11h8"
-                            stroke="currentColor" stroke-width="1.8"
-                            stroke-linecap="round"/>
-                    </svg>
-                </span>
-
-                <span class="module-copy">
-                    <span class="module-title">Bocasion</span>
-
-                    <span class="module-description">
-                        Organizar pedidos por tienda, revisar cantidades
-                        y consultar precios.
-                    </span>
-
-                    <span class="module-link">
-                        Abrir módulo →
-                    </span>
-                </span>
-
-                <span class="module-arrow">↗</span>
-
-            </a>
-
-            <!-- ESPACIO PARA FUTURAS FUNCIONES -->
-            <div class="module module-soon">
-
-                <span class="module-icon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 5h16v14H4zM8 9h8M8 12h5M8 15h8"
-                            stroke="currentColor" stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"/>
-                    </svg>
-                </span>
-
-                <span class="module-copy">
-                    <span class="module-title">Otras funciones</span>
-
-                    <span class="module-description">
-                        Aquí añadiremos las próximas herramientas
-                        para controlar los pedidos.
-                    </span>
-
-                    <span class="coming-soon">
-                        Próximamente
-                    </span>
-                </span>
-
-                <span class="module-arrow">⌁</span>
-
-            </div>
-
-        </section>
-
-        <p class="footnote">
-            Versión inicial · Más herramientas se añadirán próximamente.
-        </p>
-
-    </main>
-
-    <script src="script.js"></script>
 </body>
 </html>

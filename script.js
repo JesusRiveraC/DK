@@ -1,10 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Panel de pedidos iniciado correctamente.");
-
   const fileInput = document.getElementById("excelFile");
 
-  // Si estamos en otra página, no ejecutamos la función de Excel.
+  // La página principal no tiene controles de Excel.
   if (!fileInput) return;
 
   const fileName = document.getElementById("fileName");
@@ -41,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     previewSection.hidden = true;
 
     try {
-      const data = await file.arrayBuffer();
+      const buffer = await file.arrayBuffer();
 
-      const workbook = XLSX.read(data, {
+      const workbook = XLSX.read(buffer, {
         type: "array",
         cellDates: true
       });
@@ -68,19 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
       renderTable(rows);
 
       sheetTitle.textContent = firstSheetName;
+
+      const columnCount = Math.max(
+        0,
+        ...rows.map(row => row.length)
+      );
+
       rowCount.textContent =
-        "Filas encontradas: " + rows.length +
-        ". Columnas encontradas: " +
-        Math.max(...rows.map(row => row.length), 0) + ".";
+        `Filas encontradas: ${rows.length}. ` +
+        `Columnas encontradas: ${columnCount}.`;
 
       previewSection.hidden = false;
       uploadStatus.textContent = "Excel cargado correctamente.";
       uploadStatus.className = "upload-status success";
 
     } catch (error) {
-      console.error(error);
+      console.error("Error al leer el Excel:", error);
       showError(
-        error.message || "No se pudo leer el archivo. Intenta con otro Excel."
+        error.message || "No se pudo leer el archivo seleccionado."
       );
     }
   });
@@ -92,10 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
     thead.replaceChildren();
     tbody.replaceChildren();
 
-    const maxColumns = Math.max(...rows.map(row => row.length), 0);
+    const columnCount = Math.max(
+      0,
+      ...rows.map(row => row.length)
+    );
+
     const headerRow = document.createElement("tr");
 
-    for (let column = 0; column < maxColumns; column++) {
+    for (let column = 0; column < columnCount; column++) {
       const th = document.createElement("th");
       th.textContent = rows[0][column] ?? "";
       headerRow.appendChild(th);
@@ -106,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rows.slice(1, 101).forEach(row => {
       const tr = document.createElement("tr");
 
-      for (let column = 0; column < maxColumns; column++) {
+      for (let column = 0; column < columnCount; column++) {
         const td = document.createElement("td");
         td.textContent = row[column] ?? "";
         tr.appendChild(td);
@@ -126,19 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
     fileInput.value = "";
     fileName.textContent = "Formatos permitidos: .xlsx y .xls";
     uploadStatus.textContent = "";
+    uploadStatus.className = "upload-status";
+
     previewSection.hidden = true;
     table.querySelector("thead").replaceChildren();
     table.querySelector("tbody").replaceChildren();
   });
 });
-
-
-
-// Panel de pedidos
-// Próximamente añadiremos aquí:
-// - Carga de archivos Excel.
-// - Separación automática de pedidos por tienda.
-// - Consulta de precios.
-// - Generación y descarga de plantillas.
-
-console.log("Panel de pedidos iniciado correctamente.");

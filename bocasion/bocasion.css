@@ -1,0 +1,373 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --background: #f5f6fa;
+    --surface: #ffffff;
+    --text: #202331;
+    --muted: #777d8c;
+    --primary: #6258e8;
+    --border: #e9eaf0;
+    --success: #16865b;
+    --warning: #b7791f;
+    --danger: #c03939;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.topbar {
+    height: 75px;
+    padding: 0 8%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.module-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--primary);
+}
+
+.back-link {
+    color: var(--muted);
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    color: var(--primary);
+}
+
+.container {
+    width: min(1100px, 84%);
+    margin: auto;
+    padding: 65px 0 30px;
+}
+
+.page-heading {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+.page-heading h1 {
+    font-size: clamp(30px, 5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+}
+
+.page-heading h1 span {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.upload-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    box-shadow: 0 5px 20px rgba(30, 35, 60, 0.025);
+}
+
+.upload-icon {
+    min-width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    background: #f0efff;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.upload-content {
+    flex: 1;
+}
+
+.upload-content h2 {
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.upload-content p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+#excelFile {
+    display: none;
+}
+
+.upload-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 19px;
+    background: var(--primary);
+    color: white;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.upload-button:hover {
+    background: #5146d2;
+    transform: translateY(-2px);
+}
+
+.file-name {
+    margin-top: 12px;
+    font-size: 11px;
+}
+
+.results-section {
+    margin-top: 50px;
+}
+
+.results-heading {
+    margin-bottom: 22px;
+}
+
+.results-heading h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    letter-spacing: -0.7px;
+}
+
+.store-container {
+    display: grid;
+    gap: 20px;
+}
+
+.store-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.store-header {
+    padding: 20px 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.store-header h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.store-header p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.copy-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #eeedff;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.copy-button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.store-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.store-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.store-table th {
+    padding: 13px 20px;
+    background: #fafaff;
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+}
+
+.store-table td {
+    padding: 14px 20px;
+    border-top: 1px solid #f0f0f4;
+    font-size: 12px;
+}
+
+.store-table td:first-child {
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--success);
+    white-space: nowrap;
+}
+
+.price-review {
+    color: var(--danger);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.empty-state {
+    margin-top: 35px;
+    padding: 55px 20px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed #d9d9e5;
+    border-radius: 15px;
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.empty-state p {
+    max-width: 380px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 65px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: #9a9eaa;
+    font-size: 11px;
+}
+
+.footer a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--primary);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 650px) {
+    .topbar {
+        padding: 0 6%;
+    }
+
+    .topbar-right {
+        gap: 12px;
+    }
+
+    .module-label {
+        display: none;
+    }
+
+    .container {
+        width: 88%;
+        padding-top: 45px;
+    }
+
+    .upload-card {
+        padding: 20px;
+        gap: 14px;
+    }
+
+    .upload-icon {
+        min-width: 43px;
+        height: 43px;
+        font-size: 20px;
+    }
+
+    .store-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .store-table th,
+    .store-table td {
+        padding: 12px;
+        white-space: nowrap;
+    }
+
+    .footer {
+        gap: 12px;
+        font-size: 10px;
+    }
+}
